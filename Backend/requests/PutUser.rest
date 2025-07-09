@@ -1,0 +1,6 @@
+PUT http://localhost:3003/api/blogs/686e0ee5568ec23cb1f4938c/user
+Content-Type: application/json
+
+{
+  "userId": "686e2a347d777c249e142c54"
+}

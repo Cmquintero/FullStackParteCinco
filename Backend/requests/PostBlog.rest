@@ -1,0 +1,10 @@
+POST http://localhost:3003/api/blogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcmlvZGV2IiwiaWQiOiI2ODY3N2YwYjQwMDljYTQyOTRlYWI0MzMiLCJpYXQiOjE3NTE2MTMyMDR9.steemjlCRdY7v9M6ZotV1gA2gnXl0UtU9rXCXJyvuv0
+Content-Type: application/json
+
+{
+  "title": "Fir blog",
+  "author": "Author OneHundred",
+  "url": "https://firstblog.com",
+  "likes": 12
+}
