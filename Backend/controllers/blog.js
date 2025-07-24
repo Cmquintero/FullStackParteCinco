@@ -12,7 +12,7 @@ blogRouter.get('/', async (request, response, next) => {
       title: blog.title,
       author: blog.author,
       likes: blog.likes,
-      idBlog: blog._id.toString(),
+      id: blog._id.toString(), 
       user: {
         username: blog.user?.username,
         name: blog.user?.name,
@@ -41,7 +41,7 @@ blogRouter.get('/:id', async (request, response, next) => {
       title: blog.title,
       author: blog.author,
       likes: blog.likes,
-      idBlog: blog._id.toString(),
+      id: blog._id.toString(), 
       user: {
         username: blog.user?.username,
         name: blog.user?.name,
@@ -91,7 +91,7 @@ blogRouter.post('/', async (request, response, next) => {
       title: populatedBlog.title,
       author: populatedBlog.author,
       likes: populatedBlog.likes,
-      idBlog: populatedBlog._id.toString(),
+      id: populatedBlog._id.toString(),
       user: {
         username: populatedBlog.user?.username,
         name: populatedBlog.user?.name,
@@ -106,13 +106,14 @@ blogRouter.post('/', async (request, response, next) => {
 
 blogRouter.put('/:id', async (request, response, next) => {
   try {
-    const { author, title, url, likes } = request.body
+    const { author, title, url, likes, user } = request.body
 
     const updatedBlog = {
       author,
       title,
       url,
       likes,
+      user, 
     }
 
     const result = await Blog.findByIdAndUpdate(
@@ -132,7 +133,7 @@ blogRouter.put('/:id', async (request, response, next) => {
       title: result.title,
       author: result.author,
       likes: result.likes,
-      idBlog: result._id.toString(),
+      id: result._id.toString(),
       user: {
         username: result.user?.username,
         name: result.user?.name,
@@ -143,6 +144,7 @@ blogRouter.put('/:id', async (request, response, next) => {
     next(error)
   }
 })
+
 
 blogRouter.put('/:id/user', async (request, response, next) => {
   try {
@@ -183,7 +185,7 @@ blogRouter.put('/:id/user', async (request, response, next) => {
       title: populatedBlog.title,
       author: populatedBlog.author,
       likes: populatedBlog.likes,
-      idBlog: populatedBlog._id.toString(),
+      id: populatedBlog._id.toString(),
       user: {
         username: populatedBlog.user?.username,
         name: populatedBlog.user?.name,
