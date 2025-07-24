@@ -10,5 +10,6 @@ aplique la nueva parte en los components me di cuenta que deberia ser mejor ya q
 # Ejercicio 5.12  
 Aplique en este ejercicio el metodo PropTypes con su integracion no se por que envio vulnerabilidad , no logree leer por que se termino la consola, eslint no lo modifique por que ya lo traia de los otros ejercicios modificados como me gusta y no no es la instalacion por defecto 
 
-# Ejercicio 5.7  
-Aquí ya la app toma forma completa. Se pueden crear, ver, dar like y eliminar blogs. Implementé que solo el usuario que creó el blog pueda eliminarlo, y fue muy satisfactorio ver cómo todo funcionaba integrado. Aprendí bastante sobre condicionales con el usuario actual, validación visual y el uso de estados.
+# Ejercicio 5.12-5.16
+estos ejercicios fueron los mas sencillos de esta parte un poco de involucarar la logica 
+
