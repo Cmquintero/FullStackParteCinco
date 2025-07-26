@@ -11,5 +11,10 @@ aplique la nueva parte en los components me di cuenta que deberia ser mejor ya q
 Aplique en este ejercicio el metodo PropTypes con su integracion no se por que envio vulnerabilidad , no logree leer por que se termino la consola, eslint no lo modifique por que ya lo traia de los otros ejercicios modificados como me gusta y no no es la instalacion por defecto 
 
 # Ejercicio 5.12-5.16
-estos ejercicios fueron los mas sencillos de esta parte un poco de involucarar la logica 
+estos ejercicios fueron los mas sencillos de esta parte un poco de involucarar la logica y hacer las pruebas correspondientes, cuando lei de lo que se trataba pense que tenia que utilizar los metodos de el back con los test 
+
+# Ejercicio 5.17-5.23
+Estos ejercicios me complicaorn bastante el asunto no entendi muy bien cypress me complicaron ciertos puntos en estos ejercicios , aun que la considero una herramienta util para hacer pruebas 
+mas "reales" de como un usuario ingresa a la app
+
 

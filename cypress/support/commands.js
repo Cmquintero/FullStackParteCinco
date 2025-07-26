@@ -9,16 +9,16 @@ Cypress.Commands.add("login", ({ username, password }) => {
 });
 
 Cypress.Commands.add("createBlog", ({ title, author, url }) => {
-  cy.request({
-    url: "http://localhost:3003/api/blogs",
-    method: "POST",
-    body: { title, author, url },
-    headers: {
-      Authorization: `bearer ${
-        JSON.parse(localStorage.getItem("loggedBlogappUser")).token
-      }`,
-    },
+  cy.window().then((win) => {
+    const user = JSON.parse(win.localStorage.getItem("loggedBlogappUser"));
+    cy.request({
+      url: "http://localhost:3003/api/blogs",
+      method: "POST",
+      body: { title, author, url },
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
   });
-
-  cy.visit("http://localhost:3000");
+  cy.visit("http://localhost:5173");
 });

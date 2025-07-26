@@ -6,16 +6,10 @@ const Blog = ({ blog, updateLikes, deleteBlog, username }) => {
   const toggleDetails = () => setDetailsVisible(!detailsVisible);
 
 const incrementLikes = () => {
-  const updatedBlog = {
-    title: blog.title,
-    author: blog.author,
-    url: blog.url,
-    likes: blog.likes + 1,
-    user: blog.user.id,
-  };
-
-  updateLikes(blog.idBlog, updatedBlog);
+  updateLikes(blog); 
 };
+
+
 
 
   const confirmAndDelete = () => {

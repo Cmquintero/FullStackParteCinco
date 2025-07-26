@@ -5,7 +5,7 @@ const Notification = ({ message }) => {
     return <div className="error">{message.substring(5)}</div>;
   }
 
-  return <div className="success">{message}</div>;
+  return <div className="message">{message}</div>; 
 };
 
 export default Notification;

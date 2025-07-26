@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import blogService from './services/blogs'
 import loginService from './services/login'
-
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import BlogForm from './components/BlogForm'
@@ -10,7 +9,7 @@ import Togglable from './components/Togglable'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [message, setMessage] = useState(null)
+  const [message, setMessage] = useState("Bienvenido,agrega tu blog")
   const [user, setUser] = useState(null)
 
   const blogFormRef = useRef()
@@ -55,25 +54,42 @@ const App = () => {
     showMessage('You have been logged out')
   }
 
-  const handleBlogCreation = async (title, author, url) => {
-    try {
-      const newBlog = await blogService.create({ title, author, url })
-      blogFormRef.current.toggleVisibility()
-      setBlogs(blogs.concat(newBlog))
-      showMessage(`New blog '${newBlog.title}' added`)
-    } catch (err) {
-      showMessage('errorFailed to create blog')
-    }
+const handleBlogCreation = async (blogObject) => {
+  try {
+    const newBlog = await blogService.create(blogObject)
+    blogFormRef.current.toggleVisibility()
+    setBlogs(blogs.concat(newBlog))
+    showMessage(`New blog '${newBlog.title}' added`)
+  } catch (err) {
+    console.error(err.response.data)
+    showMessage('errorFailed to create blog')
   }
+}
 
-  const handleLike = async (id, updatedData) => {
-    try {
-      const updated = await blogService.update(id, updatedData)
-      setBlogs(blogs.map(b => (b.id === id ? updated : b)))
-    } catch (err) {
-      showMessage('errorFailed to update likes')
+
+const handleLike = async (blog) => {
+  try {
+    if (!blog || typeof blog.likes !== 'number') {
+      throw new Error('Invalid blog object received');
     }
+
+    const updatedBlog = {
+      ...blog,
+      likes: blog.likes + 1,
+      user: blog.user?.id || blog.user, 
+    };
+
+    const updated = await blogService.update(blog.id, updatedBlog);
+    setBlogs(blogs.map((b) => (b.id === blog.id ? updated : b)));
+  } catch (err) {
+    console.error('Error updating likes:', err.response?.data || err.message);
+    showMessage('errorFailed to update likes');
   }
+};
+
+
+
+
 
   const handleBlogDeletion = async (id) => {
     try {
@@ -99,14 +115,14 @@ const App = () => {
           </p>
 
           <Togglable buttonLabel="Create new blog" ref={blogFormRef}>
-            <BlogForm createBlog={handleBlogCreation} />
+            <BlogForm onCreate={handleBlogCreation} />
           </Togglable>
 
           {blogs
             .sort((a, b) => b.likes - a.likes)
             .map(blog => (
               <Blog
-                key={blog.idBlog}
+                key={blog.id}
                 blog={blog}
                 username={user.username}
                 updateLikes={handleLike}
